@@ -43,12 +43,10 @@ def search_page():
     return render_template("results.html", keyword=keyword, jobs=jobs, error=None)
 
 
-# Frozen-Flask: /search 페이지를 키워드별로 미리 생성
-@freezer.register_generator("search_page")
-def search_generator():
+@freezer.register_generator
+def search_page():
     for keyword in ["python", "javascript", "java"]:
         yield {"keyword": keyword}
-
         
 if __name__ == "__main__":
     freezer.freeze()
